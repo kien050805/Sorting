@@ -1,4 +1,7 @@
 #include <iostream>
+#include "sorting.hpp"
+#include "sorting.cpp"
+
 using namespace std;
 
 
