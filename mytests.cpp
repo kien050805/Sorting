@@ -5,7 +5,10 @@
 using namespace std;
 
 
-int main{
-
+int main()
+{
+    int A[4] = {4,3,2,1};
+    quicksort(A, 0, 4);
+    cout << A;
     return 0;
 };
