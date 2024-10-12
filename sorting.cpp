@@ -25,3 +25,4 @@ void insertion_sort(T *arr, long n)
         }
         arr[j + 1] = val
     }
+}
