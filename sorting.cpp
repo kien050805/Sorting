@@ -7,8 +7,8 @@
 Insertion Sort
 The function goes through the unsorted list and insert each element of the
 unsorted portion into its correct position in the sorted portion of the list.
-Parameters:
-Return:
+Parameters: the array to be sorted, length of array
+Return: void
 ===========================================================================*/
 template <class T>
 void insertion_sort(T *arr, long n)
