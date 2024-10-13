@@ -10,7 +10,6 @@ using namespace std;
 #ifndef SORTING
 #define SORTING
 
-
 template <class T>
 void insertion_sort(T *arr, long n);
 

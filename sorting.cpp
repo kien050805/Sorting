@@ -34,7 +34,40 @@ void insertion_sort(T *arr, long n)
     };
 };
 
+template <class T>
+T *merge(T *left, T *right, long n)
+{
+    long mid = n / 2;
+    T *res_arr = new T[n];
+    long res_counter = 0, left_counter = 0, right_counter = 0;
 
+    // Merge two sorted subarrays
+    while (left_counter < mid && right_counter < (n - mid))
+    {
+        if (left[left_counter] <= right[right_counter])
+        {
+            res_arr[res_counter++] = left[left_counter++];
+        }
+        else
+        {
+            res_arr[res_counter++] = right[right_counter++];
+        }
+    }
+
+    // Copy remaining elements from left array
+    while (left_counter < mid)
+    {
+        res_arr[res_counter++] = left[left_counter++];
+    }
+
+    // Copy remaining elements from right array
+    while (right_counter < (n - mid))
+    {
+        res_arr[res_counter++] = right[right_counter++];
+    }
+
+    return res_arr;
+}
 
 /*===========================================================================
 Merge Sort
@@ -53,52 +86,32 @@ T *merge_sort(T *arr, long n)
     };
 
     long mid = n / 2;
-    T *left[mid];
-    T *right[n - mid];
+    T left[mid];
+    T right[n - mid];
 
-    for (long i = 0; i < mid; i++) {
+    for (long i = 0; i < mid; i++)
+    {
         left[i] = arr[i];
     };
-    for (long i = mid; i < n; i++) {
+    for (long i = mid; i < n; i++)
+    {
         right[i - mid] = arr[i];
     };
-
-    left = merge_sort(left, mid);
-    right = merge_sort(right, n - mid);
+    T *temp = merge_sort(left, mid);
+    for (long i = 0; i < mid; i++)
+    {
+        left[i] = temp[i];
+    }
+    temp = merge_sort(right, n - mid);
+    for (long i = mid; i < n; i++)
+    {
+        right[i - mid] = temp[i - mid];
+    };
 
     T *ordered_arr = merge(left, right, n);
 
     return ordered_arr;
 };
-
-template <class T>
-T* merge(T* left, T* right, long n) {
-    long mid = n / 2;
-    T* res_arr = new T[n];
-    long res_counter = 0, left_counter = 0, right_counter = 0;
-
-    // Merge two sorted subarrays
-    while (left_counter < mid && right_counter < (n - mid)) {
-        if (left[left_counter] <= right[right_counter]) {
-            res_arr[res_counter++] = left[left_counter++];
-        } else {
-            res_arr[res_counter++] = right[right_counter++];
-        }
-    }
-
-    // Copy remaining elements from left array
-    while (left_counter < mid) {
-        res_arr[res_counter++] = left[left_counter++];
-    }
-
-    // Copy remaining elements from right array
-    while (right_counter < (n - mid)) {
-        res_arr[res_counter++] = right[right_counter++];
-    }
-
-    return res_arr;
-}
-
 
 template <class T>
 long partition(T *arr, long p, long r)
@@ -131,5 +144,3 @@ void quicksort(T *arr, long r, long p)
         quicksort(arr, r, q + 1);
     };
 };
-
-

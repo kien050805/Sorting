@@ -16,23 +16,23 @@ int main()
     int A[8] = {2,8,7,1,3,5,6,4};
     int B[0] = {};
     string C[5] = {"a", "d", "b", "f", "."};
-    quicksort(A, 8);
-    quicksort(B, 0);
-    quicksort(C, 5);
+    int *E = merge_sort(A, 8);
+    int *F = merge_sort(B, 0);
+    string *G = merge_sort(C, 5);
     for (int i = 0; i < 8; i++)
     {
-        cout << A[i] << ' ';
+        cout << E[i] << ' ';
     };
     cout << endl;
     for (int i = 0; i < 0; i++)
     {
-        cout << B[i] << ' ';
+        cout << F[i] << ' ';
     };
-    cout << B;
+    cout << F;
     cout << endl;
     for (int i = 0; i < 5; i++)
     {
-        cout << C[i] << ' ';
+        cout << G[i] << ' ';
     };
     return 0;
 };
