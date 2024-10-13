@@ -8,6 +8,7 @@ This file contains the implementations of the sorting functions in sorting.hpp
 #include <iostream>
 #include "sorting.hpp"
 
+
 /*===========================================================================
 Insertion Sort
 The function goes through the unsorted list and insert each element of the
@@ -33,6 +34,7 @@ void insertion_sort(T *arr, long n)
         arr[j + 1] = val;
     };
 };
+
 
 
 /*===========================================================================
