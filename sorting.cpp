@@ -33,3 +33,37 @@ void insertion_sort(T *arr, long n)
         arr[j + 1] = val;
     }
 }
+
+template <class T>
+long partition(T *arr, long p, long r)
+{
+    T x = arr[r - 1];
+    long i = p - 1;
+    for (int j = p; j < r - 1; j++)
+    {
+        if (arr[j] <= x)
+        {
+            i = i + 1;
+            T temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    };
+    T temp = arr[i + 1];
+    arr[i + 1] = arr[r - 1];
+    arr[r - 1] = temp;
+    return i + 1;
+};
+
+template <class T>
+void quicksort(T *arr, long r, long p)
+{
+    if (p < r)
+    {
+        long q = partition(arr, p, r);
+        quicksort(arr, q - 1, p);
+        quicksort(arr, r, q + 1);
+    };
+};
+
+
