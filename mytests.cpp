@@ -19,9 +19,9 @@ int* rand_arr(long length){
     int* arr = new int[length];
 
     // Random number generation setup
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distri(min_val, max_val);
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distri(min_val, max_val);
 
     // Populate the array with random numbers
     for (long i = 0; i < length; i++) {
