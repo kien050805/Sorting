@@ -19,7 +19,7 @@ int* rand_arr(long length){
     int* arr = new int[length];
 
     // Random number generation setup
-    std::random_device rd;
+    random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> distri(min_val, max_val);
 
