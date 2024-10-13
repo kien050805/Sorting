@@ -1,3 +1,10 @@
+/*===========================================================================
+Kien Le, Nguyen Nguyen, Bach Nguyen
+12 October 2024
+sorting.hpp
+This file contains the definitions of the sorting functions. 
+===========================================================================*/
+
 using namespace std;
 
 template <class T>

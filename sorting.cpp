@@ -1,3 +1,10 @@
+/*===========================================================================
+Kien Le, Nguyen Nguyen, Bach Nguyen
+12 October 2024
+sorting.cpp
+This file contains the implementations of the sorting functions in sorting.hpp 
+===========================================================================*/
+
 #include <iostream>
 #include "sorting.hpp"
 
@@ -21,8 +28,10 @@ void insertion_sort(T *arr, long n)
         // than the max in the sorted, move it back 
         while (j >= 0 && arr[j] > val) {
             arr[j + 1] = arr[j];
-            j = j + 1;
+            j = j - 1;
         }
         arr[j + 1] = val
     }
 }
+
+
