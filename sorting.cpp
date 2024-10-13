@@ -9,6 +9,8 @@ This file contains the implementations of the sorting functions in sorting.hpp
 #include "sorting.hpp"
 
 
+
+
 /*===========================================================================
 Insertion Sort
 The function goes through the unsorted list and insert each element of the
@@ -34,6 +36,8 @@ void insertion_sort(T *arr, long n)
         arr[j + 1] = val;
     };
 };
+
+
 
 
 // merge function
@@ -119,6 +123,9 @@ T *merge_sort(T *arr, long n)
 
     return ordered_arr;
 };
+
+
+
 
 template <class T>
 long partition(T *arr, long p, long r)
