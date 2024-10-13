@@ -34,40 +34,6 @@ void insertion_sort(T *arr, long n)
     };
 };
 
-template <class T>
-T *merge(T *left, T *right, long n)
-{
-    long mid = n / 2;
-    T *res_arr = new T[n];
-    long res_counter = 0, left_counter = 0, right_counter = 0;
-
-    // Merge two sorted subarrays
-    while (left_counter < mid && right_counter < (n - mid))
-    {
-        if (left[left_counter] <= right[right_counter])
-        {
-            res_arr[res_counter++] = left[left_counter++];
-        }
-        else
-        {
-            res_arr[res_counter++] = right[right_counter++];
-        }
-    }
-
-    // Copy remaining elements from left array
-    while (left_counter < mid)
-    {
-        res_arr[res_counter++] = left[left_counter++];
-    }
-
-    // Copy remaining elements from right array
-    while (right_counter < (n - mid))
-    {
-        res_arr[res_counter++] = right[right_counter++];
-    }
-
-    return res_arr;
-}
 
 /*===========================================================================
 Merge Sort
@@ -112,6 +78,49 @@ T *merge_sort(T *arr, long n)
 
     return ordered_arr;
 };
+
+// Helper Merge function for merge_sort
+// Parameters: left array, right array, length of original array
+// Return: ordered original array
+template <class T>
+T *merge(T *left, T *right, long n)
+{
+    long mid = n / 2;
+    T *res_arr = new T[n];
+    long res_counter = 0, left_counter = 0, right_counter = 0;
+
+    // Merge two sorted subarrays
+    while (left_counter < mid && right_counter < (n - mid))
+    {
+        if (left[left_counter] <= right[right_counter])
+        {
+            res_arr[res_counter++] = left[left_counter++];
+        }
+        else
+        {
+            res_arr[res_counter++] = right[right_counter++];
+        }
+    }
+
+    // Copy remaining elements from left array
+    while (left_counter < mid)
+    {
+        res_arr[res_counter++] = left[left_counter++];
+    }
+
+    // Copy remaining elements from right array
+    while (right_counter < (n - mid))
+    {
+        res_arr[res_counter++] = right[right_counter++];
+    }
+
+    return res_arr;
+}
+
+
+
+
+
 
 template <class T>
 long partition(T *arr, long p, long r)
