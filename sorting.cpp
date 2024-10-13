@@ -31,8 +31,91 @@ void insertion_sort(T *arr, long n)
             j = j - 1;
         }
         arr[j + 1] = val;
-    }
-}
+    };
+};
+
+
+
+/*===========================================================================
+Merge Sort
+This function partitions the unsorted array in halfs until it can no longer
+be divided and recursively sort each array individually and merged back
+together in sorted order.
+Parameters: the array to be sorted, length of array
+Return: the sorted array
+===========================================================================*/
+template <class T>
+T *merge_sort(T *arr, long n)
+{
+    if (n <= 1)
+    {
+        return arr;
+    };
+
+    long mid = n / 2;
+    T *left[mid];
+    T *right[n - mid];
+
+    for (int i = 0; i < n; i++)
+    {
+        if (i < mid)
+        {
+            left[i] = arr[i];
+        }
+        else
+        {
+            right[i - mid] = arr[i];
+        }
+    };
+
+    left = merge_sort(left, mid);
+    right = merge_sort(right, n - mid);
+
+    T *ordred_arr = merge(left, right, n);
+
+    return ordred_arr;
+};
+
+template <class T>
+T *merge(T *left, T *right, long n)
+{
+    T *res_arr[n];
+    long res_counter = 0, left_counter = 0, right_counter = 0;
+
+    while (left[left_counter] != NULL && right[right_counter] != NULL)
+    {
+        if (left[left_counter] <= right[right_counter]) 
+        {
+            res_arr[res_counter] = left[left_counter];
+            res_counter ++;
+            left_counter ++;
+        }
+        else 
+        {   
+            res_arr[res_counter] = right[right_counter];
+            res_counter ++;
+            right_counter ++;
+        }
+    };
+
+    while (left[left_counter] != NULL)
+    {
+        res_arr[res_counter] = left[left_counter];
+        res_counter ++;
+        left_counter ++;
+    };
+
+    while (right[right_counter] != NULL)
+    {
+        res_arr[res_counter] = right[right_counter];
+        res_counter ++;
+        right_counter ++;
+    };
+
+    return res_arr;
+};
+
+
 
 template <class T>
 long partition(T *arr, long p, long r)
