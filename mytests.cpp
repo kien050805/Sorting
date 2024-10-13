@@ -9,6 +9,7 @@ This file runs various tests on every sorting functions in sorting.hpp
 #include "sorting.cpp"
 #include <random>
 #include <chrono>
+#include <climits>
 
 using namespace std;
 using namespace std::chrono;
@@ -98,5 +99,28 @@ int main()
     // };
     // return 0;
 
+    int len[5] = {10, 100, 1000, 10000, 100000};
 
+    int insertion_runtime[5] = {};
+    int merge_runtime[5] = {};
+
+    for (int i = 0; i < 5; i++)
+    {
+        insertion_runtime[i] = insertion_sort_run_time(len[i]);
+        merge_runtime[i] = merge_sort_run_time(len[i]);
+    }
+
+    cout << "Insertion sort runtime in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << insertion_runtime[i] << ' ';
+    };
+    cout << endl;
+
+    cout << "Merge sort runtime in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << merge_runtime[i] << ' ';
+    };
+    cout << endl;
 };
