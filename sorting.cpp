@@ -125,16 +125,14 @@ T *merge_sort(T *arr, long n)
 };
 
 
-
-
 template <class T>
-long partition(T *arr, long p, long r)
+long partition(T *arr, long n)
 {
-    T x = arr[r - 1];
-    long i = p - 1;
-    for (int j = p; j < r - 1; j++)
+    T x = arr[n - 1];
+    long i = -1;
+    for (int j = 0; j < n - 1; j++)
     {
-        if (arr[j] <= x)
+        if (arr[j] >= x)
         {
             i = i + 1;
             T temp = arr[i];
@@ -143,18 +141,45 @@ long partition(T *arr, long p, long r)
         }
     };
     T temp = arr[i + 1];
-    arr[i + 1] = arr[r - 1];
-    arr[r - 1] = temp;
+    arr[i + 1] = arr[n - 1];
+    arr[n - 1] = temp;
     return i + 1;
 };
 
 template <class T>
-void quicksort(T *arr, long r, long p)
+void rearrange(T *arr, long q, long n)
 {
-    if (p < r)
+    if (n < 2)
     {
-        long q = partition(arr, p, r);
-        quicksort(arr, q - 1, p);
-        quicksort(arr, r, q + 1);
+        return;
+    }
+
+    T temp[n];
+    for (long i = 0; i < n; i++)
+    {
+        temp[i] = arr[i];
+    }
+
+    for (long i = q + 1; i < n; i++)
+    {
+        arr[i - q - 1] = temp[i];
+    }
+
+    arr[n - q - 1] = temp[q];
+
+    for (long i = 0; i < q; i++)
+    {
+        arr[n - q + i] = temp[i];
+    }
+}
+template <class T>
+void quicksort(T *arr, long n)
+{
+    if (n > 1)
+    {
+        long q = partition(arr, n);
+        quicksort(arr, q);
+        rearrange(arr, q, n);
+        quicksort(arr, n - q - 1);
     };
 };
