@@ -23,6 +23,10 @@ int main()
     {
         cout << E[i] << ' ';
     };
+    for (int i = 0; i < 8; i++)
+    {
+        cout << A[i] << ' ';
+    };
     cout << endl;
     for (int i = 0; i < 0; i++)
     {
@@ -33,6 +37,10 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         cout << G[i] << ' ';
+    };
+    for (int i = 0; i < 5; i++)
+    {
+        cout << C[i] << ' ';
     };
     return 0;
 };
