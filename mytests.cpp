@@ -9,6 +9,7 @@ This file runs various tests on every sorting functions in sorting.hpp
 #include "sorting.cpp"
 #include <random>
 #include <chrono>
+
 using namespace std;
 using namespace std::chrono;
 
@@ -46,9 +47,31 @@ long long sorting_run_time(long n)
     return run_time;
 };
 
+long long insertion_sort_run_time(long n)
+{
+    // Sort array length n
+    int* arr = rand_arr(n);
+    auto start = high_resolution_clock::now();
+    insertion_sort(arr, n);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    long long run_time = duration.count();
 
+    return run_time;
+};
 
+long long merge_sort_run_time(long n)
+{
+    // Sort array length n
+    int* arr = rand_arr(n);
+    auto start = high_resolution_clock::now();
+    int* arr_2 = merge_sort(arr, n);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    long long run_time = duration.count();
 
+    return run_time;
+};
 
 int main()
 {
@@ -74,4 +97,6 @@ int main()
     //     cout << G[i] << ' ';
     // };
     // return 0;
+
+
 };
