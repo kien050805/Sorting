@@ -123,4 +123,40 @@ int main()
         cout << merge_runtime[i] << ' ';
     };
     cout << endl;
+
+    int insertion_10[5] = {};
+    for (int i = 0; i < 5; i++)
+    {
+        int current_time = 0;
+        for (int j = 0; j < 10; j++){
+            current_time += insertion_sort_run_time(len[i]);
+        }
+        current_time = current_time / 10;
+        insertion_10[i] = current_time;
+    }
+
+    cout << "Average insertion sort runtime over sample of 10 in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << insertion_10[i] << ' ';
+    };
+    cout << endl;
+
+    int merge_10[5] = {};
+    for (int i = 0; i < 5; i++)
+    {
+        int current_time = 0;
+        for (int j = 0; j < 10; j++){
+            current_time += merge_sort_run_time(len[i]);
+        }
+        current_time = current_time / 10;
+        merge_10[i] = current_time;
+    }
+
+    cout << "Average merge sort runtime over sample of 10 in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << merge_10[i] << ' ';
+    };
+    cout << endl;
 };
