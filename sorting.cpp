@@ -6,6 +6,7 @@ This file contains the implementations of the sorting functions in sorting.hpp
 ===========================================================================*/
 
 #include <iostream>
+#include <random>
 #include "sorting.hpp"
 
 
