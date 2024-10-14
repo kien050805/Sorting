@@ -1,4 +1,4 @@
-# Project_1
+# Project 1: Sorting
 
 
 ## Overview
@@ -25,5 +25,8 @@
     + Documentation
 
 ## Known Issues
+- The all_run_time() function takes a considerable amount of time to execute, so this should be considered before using it. The real_run_time() line is commented out, but you can remove the comment to run it and see the result.
 
-## Runtime_Analysis
+- Contrary to expectations for the improved quicksort and randomized quicksort, the actual running time of the standard quicksort algorithm is faster than that of the randomized quicksort algorithm with the improved quicksort algorithm for arrays with pre-randomized elements.
+
+## Runtime Analysis

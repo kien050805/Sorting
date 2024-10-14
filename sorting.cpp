@@ -180,7 +180,7 @@ template <class T>
 long improved_partition(T *arr, long n)
 {
     long mid = n / 2;
-    long k = pick_median(arr, 0, mid, n);
+    long k = pick_median(arr, 0, mid, n-1);
     T temp = arr[n - 1];
     arr[n - 1] = arr[k];
     arr[k] = temp;
