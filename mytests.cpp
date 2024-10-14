@@ -74,6 +74,32 @@ long long merge_sort_run_time(long n)
     return run_time;
 };
 
+long long quick_sort_run_time(long n)
+{
+    // Sort array length n
+    int* arr = rand_arr(n);
+    auto start = high_resolution_clock::now();
+    quicksort(arr, n);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    long long run_time = duration.count();
+
+    return run_time;
+};
+
+long long ran_quick_sort_run_time(long n)
+{
+    // Sort array length n
+    int* arr = rand_arr(n);
+    auto start = high_resolution_clock::now();
+    randomized_quicksort(arr, n);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    long long run_time = duration.count();
+
+    return run_time;
+};
+
 int main()
 {
     // int A[8] = {2,8,7,1,3,5,6,4};
@@ -99,17 +125,24 @@ int main()
     // };
     // return 0;
 
+    // Array for testing array lengths
     int len[5] = {10, 100, 1000, 10000, 100000};
 
+    // Initial array runtime testing
     int insertion_runtime[5] = {};
     int merge_runtime[5] = {};
+    int quick_runtime[5] = {};
+    int randomized_quick_runtime[5] = {};
 
     for (int i = 0; i < 5; i++)
     {
         insertion_runtime[i] = insertion_sort_run_time(len[i]);
         merge_runtime[i] = merge_sort_run_time(len[i]);
+        quick_runtime[i] = quick_sort_run_time(len[i]);
+        randomized_quick_runtime[i] = ran_quick_sort_run_time(len[i]);
     }
 
+    // Printing out insertion sort runtime
     cout << "Insertion sort runtime in microseconds: ";
     for (int i = 0; i < 5; i++)
     {
@@ -117,6 +150,7 @@ int main()
     };
     cout << endl;
 
+    // Printing out merge sort runtime
     cout << "Merge sort runtime in microseconds: ";
     for (int i = 0; i < 5; i++)
     {
@@ -124,6 +158,23 @@ int main()
     };
     cout << endl;
 
+    // Printing out quick sort runtime
+    cout << "Quick sort runtime in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << quick_runtime[i] << ' ';
+    };
+    cout << endl;
+
+    // Printing out randomized quick sort runtime
+    cout << "Randomized quick sort runtime in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << randomized_quick_runtime[i] << ' ';
+    };
+    cout << endl;
+
+    // Calculating insertion sort average sampling
     int insertion_10[5] = {};
     for (int i = 0; i < 5; i++)
     {
@@ -142,6 +193,7 @@ int main()
     };
     cout << endl;
 
+    // Calculating merge sort average sampling
     int merge_10[5] = {};
     for (int i = 0; i < 5; i++)
     {
@@ -157,6 +209,44 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         cout << merge_10[i] << ' ';
+    };
+    cout << endl;
+
+    // Calculating quick sort average sampling
+    int quick_10[5] = {};
+    for (int i = 0; i < 5; i++)
+    {
+        int current_time = 0;
+        for (int j = 0; j < 10; j++){
+            current_time += quick_sort_run_time(len[i]);
+        }
+        current_time = current_time / 10;
+        quick_10[i] = current_time;
+    }
+
+    cout << "Average quick sort runtime over sample of 10 in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << quick_10[i] << ' ';
+    };
+    cout << endl;
+
+    // Calculating randomized quick sort average sampling
+    int randomized_quick_10[5] = {};
+    for (int i = 0; i < 5; i++)
+    {
+        int current_time = 0;
+        for (int j = 0; j < 10; j++){
+            current_time += ran_quick_sort_run_time(len[i]);
+        }
+        current_time = current_time / 10;
+        randomized_quick_10[i] = current_time;
+    }
+
+    cout << "Average randomized quick sort runtime over sample of 10 in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << randomized_quick_10[i] << ' ';
     };
     cout << endl;
 };
