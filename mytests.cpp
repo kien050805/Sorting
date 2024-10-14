@@ -87,6 +87,19 @@ long long quick_sort_run_time(long n)
     return run_time;
 };
 
+long long improved_quick_sort_run_time(long n)
+{
+    // Sort array length n
+    int* arr = rand_arr(n);
+    auto start = high_resolution_clock::now();
+    improved_quicksort(arr, n);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    long long run_time = duration.count();
+
+    return run_time;
+};
+
 long long ran_quick_sort_run_time(long n)
 {
     // Sort array length n
@@ -132,6 +145,7 @@ int main()
     int insertion_runtime[5] = {};
     int merge_runtime[5] = {};
     int quick_runtime[5] = {};
+    int improved_quick_runtime[5] = {};
     int randomized_quick_runtime[5] = {};
 
     for (int i = 0; i < 5; i++)
@@ -139,6 +153,7 @@ int main()
         insertion_runtime[i] = insertion_sort_run_time(len[i]);
         merge_runtime[i] = merge_sort_run_time(len[i]);
         quick_runtime[i] = quick_sort_run_time(len[i]);
+        improved_quick_runtime[i] = improved_quick_sort_run_time(len[i]);
         randomized_quick_runtime[i] = ran_quick_sort_run_time(len[i]);
     }
 
@@ -163,6 +178,14 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         cout << quick_runtime[i] << ' ';
+    };
+    cout << endl;
+
+    // Printing out improved quick sort runtime
+    cout << "Improved quick sort runtime in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << improved_quick_runtime[i] << ' ';
     };
     cout << endl;
 
@@ -228,6 +251,25 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         cout << quick_10[i] << ' ';
+    };
+    cout << endl;
+
+    // Calculating improved quick sort average sampling
+    int improved_quick_10[5] = {};
+    for (int i = 0; i < 5; i++)
+    {
+        int current_time = 0;
+        for (int j = 0; j < 10; j++){
+            current_time += improved_quick_sort_run_time(len[i]);
+        }
+        current_time = current_time / 10;
+        improved_quick_10[i] = current_time;
+    }
+
+    cout << "Average improved quick sort runtime over sample of 10 in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << improved_quick_10[i] << ' ';
     };
     cout << endl;
 
