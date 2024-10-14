@@ -10,6 +10,7 @@ This file runs various tests on every sorting functions in sorting.hpp
 #include <random>
 #include <chrono>
 #include <climits>
+#include <cassert>
 
 using namespace std;
 using namespace std::chrono;
@@ -17,6 +18,281 @@ using namespace std::chrono;
 const int max_val = INT_MAX;
 const int min_val = INT_MIN;
 
+bool insertion_sanity_check()
+{
+    bool check = true;
+
+    int A[9] = {9, -8, 7, -6, 5, -4, 3, -2, 1};
+    int B[0] = {};
+    string C[5] = {"a", "b", "c", " ", "."};
+    double D[5] = {3.14, .0, 1.14, 1.618, 2.71};
+    int E[5] = {0, 0, 0, 0, 0};
+
+    int expected_A[9] = {-8, -6, -4, -2, 1, 3, 5, 7, 9};
+    string expected_C[5] = {" ", ".", "a", "b", "c"};
+    double expected_D[5] = {.0, 1.14, 1.618, 2.71, 3.14};
+    int expected_E[5] = {0, 0, 0, 0, 0};
+
+    insertion_sort(A, 9);
+    for (int i = 0; i < 9; i++)
+    {
+        if (A[i] != expected_A[i])
+        {
+            check = false;
+        };
+    };
+
+    insertion_sort(B, 0);
+
+    insertion_sort(C, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (C[i] != expected_C[i])
+        {
+            check = false;
+        };
+    };
+
+    insertion_sort(D, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (D[i] != expected_D[i])
+        {
+            check = false;
+        };
+    };
+
+    insertion_sort(E, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (E[i] != expected_E[i])
+        {
+            check = false;
+        };
+    };
+    return check;
+};
+
+bool merge_sanity_check()
+{
+    bool check = true;
+
+    int A[9] = {9, -8, 7, -6, 5, -4, 3, -2, 1};
+    int B[0] = {};
+    string C[5] = {"a", "b", "c", " ", "."};
+    double D[5] = {3.14, .0, 1.14, 1.618, 2.71};
+    int E[5] = {0, 0, 0, 0, 0};
+
+    int expected_A[9] = {-8, -6, -4, -2, 1, 3, 5, 7, 9};
+    string expected_C[5] = {" ", ".", "a", "b", "c"};
+    double expected_D[5] = {.0, 1.14, 1.618, 2.71, 3.14};
+    int expected_E[5] = {0, 0, 0, 0, 0};
+
+    int *sorted_A = merge_sort(A, 9);
+    for (int i = 0; i < 9; i++)
+    {
+        if (sorted_A[i] != expected_A[i])
+        {
+            check = false;
+        };
+    };
+
+    int *sorted_B = merge_sort(B, 0);
+
+    string *sorted_C = merge_sort(C, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (sorted_C[i] != expected_C[i])
+        {
+            check = false;
+        };
+    };
+
+    double *sorted_D = merge_sort(D, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (sorted_D[i] != expected_D[i])
+        {
+            check = false;
+        };
+    };
+
+    int *sorted_E = merge_sort(E, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (sorted_E[i] != expected_E[i])
+        {
+            check = false;
+        };
+    };
+    return check;
+};
+
+bool quick_sanity_check()
+{
+    bool check = true;
+
+    int A[9] = {9, -8, 7, -6, 5, -4, 3, -2, 1};
+    int B[0] = {};
+    string C[5] = {"a", "b", "c", " ", "."};
+    double D[5] = {3.14, .0, 1.14, 1.618, 2.71};
+    int E[5] = {0, 0, 0, 0, 0};
+
+    int expected_A[9] = {-8, -6, -4, -2, 1, 3, 5, 7, 9};
+    string expected_C[5] = {" ", ".", "a", "b", "c"};
+    double expected_D[5] = {.0, 1.14, 1.618, 2.71, 3.14};
+    int expected_E[5] = {0, 0, 0, 0, 0};
+
+    quicksort(A, 9);
+    for (int i = 0; i < 9; i++)
+    {
+        if (A[i] != expected_A[i])
+        {
+            check = false;
+        };
+    };
+
+    quicksort(B, 0);
+
+    quicksort(C, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (C[i] != expected_C[i])
+        {
+            check = false;
+        };
+    };
+
+    quicksort(D, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (D[i] != expected_D[i])
+        {
+            check = false;
+        };
+    };
+
+    quicksort(E, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (E[i] != expected_E[i])
+        {
+            check = false;
+        };
+    };
+    return check;
+};
+
+bool ran_quick_sanity_check()
+{
+    bool check = true;
+
+    int A[9] = {9, -8, 7, -6, 5, -4, 3, -2, 1};
+    int B[0] = {};
+    string C[5] = {"a", "b", "c", " ", "."};
+    double D[5] = {3.14, .0, 1.14, 1.618, 2.71};
+    int E[5] = {0, 0, 0, 0, 0};
+
+    int expected_A[9] = {-8, -6, -4, -2, 1, 3, 5, 7, 9};
+    string expected_C[5] = {" ", ".", "a", "b", "c"};
+    double expected_D[5] = {.0, 1.14, 1.618, 2.71, 3.14};
+    int expected_E[5] = {0, 0, 0, 0, 0};
+
+    randomized_quicksort(A, 9);
+    for (int i = 0; i < 9; i++)
+    {
+        if (A[i] != expected_A[i])
+        {
+            check = false;
+        };
+    };
+
+    randomized_quicksort(B, 0);
+
+    randomized_quicksort(C, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (C[i] != expected_C[i])
+        {
+            check = false;
+        };
+    };
+
+    randomized_quicksort(D, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (D[i] != expected_D[i])
+        {
+            check = false;
+        };
+    };
+
+    randomized_quicksort(E, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (E[i] != expected_E[i])
+        {
+            check = false;
+        };
+    };
+
+    return check;
+};
+
+bool improved_quick_sanity_check()
+{
+    bool check = true;
+
+    int A[9] = {9, -8, 7, -6, 5, -4, 3, -2, 1};
+    int B[0] = {};
+    string C[5] = {"a", "b", "c", " ", "."};
+    double D[5] = {3.14, .0, 1.14, 1.618, 2.71};
+    int E[5] = {0, 0, 0, 0, 0};
+
+    int expected_A[9] = {-8, -6, -4, -2, 1, 3, 5, 7, 9};
+    string expected_C[5] = {" ", ".", "a", "b", "c"};
+    double expected_D[5] = {.0, 1.14, 1.618, 2.71, 3.14};
+    int expected_E[5] = {0, 0, 0, 0, 0};
+
+    improved_quicksort(A, 9);
+    for (int i = 0; i < 9; i++)
+    {
+        if (A[i] != expected_A[i])
+        {
+            check = false;
+        };
+    };
+
+    improved_quicksort(B, 0);
+
+    improved_quicksort(C, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (C[i] != expected_C[i])
+        {
+            check = false;
+        };
+    };
+
+    improved_quicksort(D, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (D[i] != expected_D[i])
+        {
+            check = false;
+        };
+    };
+
+    improved_quicksort(E, 5);
+    for (int i = 0; i < 5; i++)
+    {
+        if (E[i] != expected_E[i])
+        {
+            check = false;
+        };
+    };
+    return check;
+};
 
 int *rand_arr(long length)
 {
@@ -128,76 +404,10 @@ long long cpp_sort_run_time(long n)
     return run_time;
 };
 
-int main()
+void all_run_time()
 {
     // Array for testing array lengths
     int len[5] = {10, 100, 1000, 10000, 100000};
-
-    // Initial array runtime testing
-    int insertion_runtime[5] = {};
-    int merge_runtime[5] = {};
-    int quick_runtime[5] = {};
-    int improved_quick_runtime[5] = {};
-    int randomized_quick_runtime[5] = {};
-    int cpp_runtime[5] = {};
-
-    for (int i = 0; i < 5; i++)
-    {
-        insertion_runtime[i] = insertion_sort_run_time(len[i]);
-        merge_runtime[i] = merge_sort_run_time(len[i]);
-        quick_runtime[i] = quick_sort_run_time(len[i]);
-        improved_quick_runtime[i] = improved_quick_sort_run_time(len[i]);
-        randomized_quick_runtime[i] = ran_quick_sort_run_time(len[i]);
-        cpp_runtime[i] = cpp_sort_run_time(len[i]);
-    }
-
-    // Printing out insertion sort runtime
-    cout << "Insertion sort runtime in microseconds: ";
-    for (int i = 0; i < 5; i++)
-    {
-        cout << insertion_runtime[i] << ' ';
-    };
-    cout << endl;
-
-    // Printing out merge sort runtime
-    cout << "Merge sort runtime in microseconds: ";
-    for (int i = 0; i < 5; i++)
-    {
-        cout << merge_runtime[i] << ' ';
-    };
-    cout << endl;
-
-    // Printing out quick sort runtime
-    cout << "Quick sort runtime in microseconds: ";
-    for (int i = 0; i < 5; i++)
-    {
-        cout << quick_runtime[i] << ' ';
-    };
-    cout << endl;
-
-    // Printing out improved quick sort runtime
-    cout << "Improved quick sort runtime in microseconds: ";
-    for (int i = 0; i < 5; i++)
-    {
-        cout << improved_quick_runtime[i] << ' ';
-    };
-    cout << endl;
-
-    // Printing out randomized quick sort runtime
-    cout << "Randomized quick sort runtime in microseconds: ";
-    for (int i = 0; i < 5; i++)
-    {
-        cout << randomized_quick_runtime[i] << ' ';
-    };
-    cout << endl;
-
-    // Printing out C++ sort runtime
-    cout << "C++ sort runtime in microseconds: ";
-    for (int i = 0; i < 5; i++)
-    {
-        cout << cpp_runtime[i] << ' ';
-    };
-    cout << endl;
 
     // Calculating insertion sort average sampling
     int insertion_10[5] = {};
@@ -212,7 +422,7 @@ int main()
         insertion_10[i] = current_time;
     }
 
-    cout << "Average insertion sort runtime over sample of 10 in microseconds: ";
+    cout << "Average insertion sort runtime over test case of 10/100/1000/10000/100000 in microseconds: ";
     for (int i = 0; i < 5; i++)
     {
         cout << insertion_10[i] << ' ';
@@ -232,7 +442,7 @@ int main()
         merge_10[i] = current_time;
     }
 
-    cout << "Average merge sort runtime over sample of 10 in microseconds: ";
+    cout << "Average merge sort runtime over test case of 10/100/1000/10000/100000 in microseconds: ";
     for (int i = 0; i < 5; i++)
     {
         cout << merge_10[i] << ' ';
@@ -252,7 +462,7 @@ int main()
         quick_10[i] = current_time;
     }
 
-    cout << "Average quick sort runtime over sample of 10 in microseconds: ";
+    cout << "Average quick sort runtime over test case of 10/100/1000/10000/100000 in microseconds: ";
     for (int i = 0; i < 5; i++)
     {
         cout << quick_10[i] << ' ';
@@ -272,7 +482,7 @@ int main()
         improved_quick_10[i] = current_time;
     }
 
-    cout << "Average improved quick sort runtime over sample of 10 in microseconds: ";
+    cout << "Average improved quick sort runtime over test case of 10/100/1000/10000/100000 in microseconds: ";
     for (int i = 0; i < 5; i++)
     {
         cout << improved_quick_10[i] << ' ';
@@ -292,7 +502,7 @@ int main()
         randomized_quick_10[i] = current_time;
     }
 
-    cout << "Average randomized quick sort runtime over sample of 10 in microseconds: ";
+    cout << "Average randomized quick sort runtime over test case of 10/100/1000/10000/100000 in microseconds: ";
     for (int i = 0; i < 5; i++)
     {
         cout << randomized_quick_10[i] << ' ';
@@ -312,10 +522,66 @@ int main()
         cpp_sort_10[i] = current_time;
     }
 
-    cout << "Average C++ sort runtime over sample of 10 in microseconds: ";
+    cout << "Average C++ sort runtime over test case of 10/100/1000/10000/100000 in microseconds: ";
     for (int i = 0; i < 5; i++)
     {
         cout << cpp_sort_10[i] << ' ';
     };
     cout << endl;
+};
+
+
+int main()
+{
+    int count = 0;
+    try
+    {
+        if (insertion_sanity_check())
+        {
+            count++;
+        }
+        else
+        {
+            throw count;
+        };
+        if (merge_sanity_check())
+        {
+            count++;
+        }
+        else
+        {
+            throw count;
+        };
+        if (quick_sanity_check())
+        {
+            count++;
+        }
+        else
+        {
+            throw count;
+        };
+        if (ran_quick_sanity_check())
+        {
+            count++;
+        }
+        else
+        {
+            throw count;
+        };
+        if (improved_quick_sanity_check())
+        {
+            count++;
+        }
+        else
+        {
+            throw count;
+        };
+    }
+    catch (int count)
+    {
+        cout << count << "/5 test cases passed!" << endl;
+    };
+    cout << "All test cases passed!" << endl;
+
+    // all_run_time();
 };

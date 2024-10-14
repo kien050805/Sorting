@@ -217,7 +217,7 @@ void insertion_sort(T *arr, long n)
     for (long i = 1; i < n; i++)
     {
         T val = arr[i];
-        T j = i - 1;
+        long j = i - 1;
         // While the element next to be sorted is smaller
         // than the max in the sorted, move it back
         while (j >= 0 && arr[j] > val)
