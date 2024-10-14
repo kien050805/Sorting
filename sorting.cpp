@@ -219,6 +219,23 @@ void randomized_quicksort(T *arr, long n)
 };
 
 template <class T>
+long pick_median(T* arr, long a, long b, long c)
+{
+    if ((arr[a] >= arr[b] && arr[a] <= arr[c]) || (arr[a] >= arr[c] && arr[a] <= arr[b]))
+    {
+        return a;
+    }
+    else if ((arr[b] >= arr[a] && arr[b] <= arr[c]) || (arr[b] >= arr[c] && arr[b] <= arr[a]))
+    {
+        return b;
+    }
+    else
+    {
+        return c;
+    }
+};
+
+template <class T>
 long improved_partition(T *arr, long n)
 {
     long mid = n / 2;
