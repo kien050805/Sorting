@@ -183,3 +183,44 @@ void quicksort(T *arr, long n)
         quicksort(arr, n - q - 1);
     };
 };
+
+template <class T>
+long randomized_partition(T *arr, long n)
+{
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distri(0, n - 1);
+    int k = distri(gen);
+    T temp = arr[n - 1];
+    arr[n - 1] = arr[k];
+    arr[k] = temp;
+
+    T x = arr[n - 1];
+    long i = -1;
+    for (int j = 0; j < n - 1; j++)
+    {
+        if (arr[j] >= x)
+        {
+            i = i + 1;
+            T temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    };
+    temp = arr[i + 1];
+    arr[i + 1] = arr[n - 1];
+    arr[n - 1] = temp;
+    return i + 1;
+};
+
+template <class T>
+void randomized_quicksort(T *arr, long n)
+{
+    if (n > 1)
+    {
+        long q = randomized_partition(arr, n);
+        randomized_quicksort(arr, q);
+        rearrange(arr, q, n);
+        randomized_quicksort(arr, n - q - 1);
+    };
+};
