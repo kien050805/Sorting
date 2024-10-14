@@ -52,7 +52,7 @@ T *merge(T *left, T *right, long n)
 
 /*===========================================================================
 partition function
-Divide the array for quicksort depending on the pivot
+Divide the array for quicksort by the larger part and lower part of the pivot
 Parameters: the array to be divided, length of the array
 Return: Number of items larger then the pivot
 ===========================================================================*/
@@ -113,7 +113,7 @@ void rearrange(T *arr, long q, long n)
 
 /*===========================================================================
 randomized_partition function
-Divide the array for quicksort depending on a randomized pivot
+Rearrange the array for quicksort depending on the randomized pivot
 Parameters: the array to be divided, length of the array
 Return: Number of items larger then the pivot
 ===========================================================================*/
@@ -148,9 +148,9 @@ long randomized_partition(T *arr, long n)
 
 /*===========================================================================
 pick_median function
-Pick the median of an array for improved quick_sort
+Pick the median of arr[a], arr[b] and arr[c] for improved quick_sort
 Parameters: the array, first iterm, middle item, last item
-Return: the median if the array
+Return: the median of arr[a], arr[b] and arr[c] the array
 ===========================================================================*/
 template <class T>
 long pick_median(T *arr, long a, long b, long c)
@@ -171,14 +171,15 @@ long pick_median(T *arr, long a, long b, long c)
 
 /*===========================================================================
 improved_partition function
-Divide the array for quicksort depending on the pivot (the median)
+Rearrange the array for quicksort depending on the pivot (the median of arr[0], 
+arr[mid] and arr[n])
 Parameters: the array to be divided, length of the array
 Return: Number of items larger then the pivot
 ===========================================================================*/
 template <class T>
 long improved_partition(T *arr, long n)
 {
-    long mid = round(n / 2);
+    long mid = n / 2;
     long k = pick_median(arr, 0, mid, n);
     T temp = arr[n - 1];
     arr[n - 1] = arr[k];
@@ -274,8 +275,8 @@ T *merge_sort(T *arr, long n)
 
 /*===========================================================================
 Quick Sort
-This function recursively selects the last item in the array as a pivot point
-and then rearrange the array around the pivot.
+This function recursively selects the last item in the array as a pivot
+and then sort the array.
 Parameters: the array to be sorted, length of array
 Return: None
 ===========================================================================*/
@@ -293,8 +294,8 @@ void quicksort(T *arr, long n)
 
 /*===========================================================================
 Randomized Quick Sort
-This function recursively selects a random item as a pivot point and then
-rearrange the array around the pivot.
+This function recursively selects a random item as a pivot and then
+sort the array.
 Parameters: the array to be sorted, length of array
 Return: None
 ===========================================================================*/
@@ -312,8 +313,8 @@ void randomized_quicksort(T *arr, long n)
 
 /*===========================================================================
 Improved Quick Sort
-This function recursively selects the median as a pivot point and then
-rearrange the array around the pivot.
+This function recursively selects the median of arr[0], arr[mid] and arr[n] as a pivot and then
+sort the array.
 Parameters: the array to be sorted, length of array
 Return: None
 ===========================================================================*/
