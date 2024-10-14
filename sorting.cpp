@@ -23,7 +23,7 @@ template <class T>
 void insertion_sort(T *arr, long n)
 {
     // Iterate through the array starting from index 1
-    for (int i = 1; i < n; i++)
+    for (long i = 1; i < n; i++)
     {
         T val = arr[i];
         T j = i - 1;
@@ -131,7 +131,7 @@ long partition(T *arr, long n)
 {
     T x = arr[n - 1];
     long i = -1;
-    for (int j = 0; j < n - 1; j++)
+    for (long j = 0; j < n - 1; j++)
     {
         if (arr[j] >= x)
         {
@@ -191,14 +191,14 @@ long randomized_partition(T *arr, long n)
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> distri(0, n - 1);
-    int k = distri(gen);
+    long k = distri(gen);
     T temp = arr[n - 1];
     arr[n - 1] = arr[k];
     arr[k] = temp;
 
     T x = arr[n - 1];
     long i = -1;
-    for (int j = 0; j < n - 1; j++)
+    for (long j = 0; j < n - 1; j++)
     {
         if (arr[j] >= x)
         {
