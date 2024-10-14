@@ -9,9 +9,6 @@ This file contains the implementations of the sorting functions in sorting.hpp
 #include <random>
 #include "sorting.hpp"
 
-
-
-
 /*===========================================================================
 Insertion Sort
 The function goes through the unsorted list and insert each element of the
@@ -37,9 +34,6 @@ void insertion_sort(T *arr, long n)
         arr[j + 1] = val;
     };
 };
-
-
-
 
 // merge function
 // Merges two arrays back into one for merge_sort
@@ -79,7 +73,6 @@ T *merge(T *left, T *right, long n)
 
     return res_arr;
 }
-
 
 /*===========================================================================
 Merge Sort
@@ -124,7 +117,6 @@ T *merge_sort(T *arr, long n)
 
     return ordered_arr;
 };
-
 
 template <class T>
 long partition(T *arr, long n)
@@ -223,5 +215,44 @@ void randomized_quicksort(T *arr, long n)
         randomized_quicksort(arr, q);
         rearrange(arr, q, n);
         randomized_quicksort(arr, n - q - 1);
+    };
+};
+
+template <class T>
+long improved_partition(T *arr, long n)
+{
+    long mid = n / 2;
+    long k = pick_median(arr, 1, mid, n);
+    T temp = arr[n - 1];
+    arr[n - 1] = arr[k];
+    arr[k] = temp;
+
+    T x = arr[n - 1];
+    long i = -1;
+    for (long j = 0; j < n - 1; j++)
+    {
+        if (arr[j] >= x)
+        {
+            i = i + 1;
+            T temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    };
+    temp = arr[i + 1];
+    arr[i + 1] = arr[n - 1];
+    arr[n - 1] = temp;
+    return i + 1;
+};
+
+template <class T>
+void improved_quicksort(T *arr, long n)
+{
+    if (n > 1)
+    {
+        long q = improved_partition(arr, n);
+        improved_quicksort(arr, q);
+        rearrange(arr, q, n);
+        improved_quicksort(arr, n - q - 1);
     };
 };
