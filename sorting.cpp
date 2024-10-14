@@ -179,8 +179,8 @@ Return: Number of items larger then the pivot
 template <class T>
 long improved_partition(T *arr, long n)
 {
-    long mid = n / 2;
-    long k = pick_median(arr, 1, mid, n);
+    long mid = round(n / 2);
+    long k = pick_median(arr, 0, mid, n);
     T temp = arr[n - 1];
     arr[n - 1] = arr[k];
     arr[k] = temp;
