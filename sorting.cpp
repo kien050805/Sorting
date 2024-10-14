@@ -9,7 +9,6 @@ This file contains the implementations of the sorting functions in sorting.hpp
 #include <random>
 #include "sorting.hpp"
 
-
 /*===========================================================================
 merge function
 Merge the left and right array into one array for merge_sort
@@ -154,7 +153,7 @@ Parameters: the array, first iterm, middle item, last item
 Return: the median if the array
 ===========================================================================*/
 template <class T>
-long pick_median(T* arr, long a, long b, long c)
+long pick_median(T *arr, long a, long b, long c)
 {
     if ((arr[a] >= arr[b] && arr[a] <= arr[c]) || (arr[a] >= arr[c] && arr[a] <= arr[b]))
     {
@@ -203,10 +202,6 @@ long improved_partition(T *arr, long n)
     return i + 1;
 };
 
-
-
-
-
 /*===========================================================================
 Insertion Sort
 The function goes through the unsorted list and insert each element of the
@@ -233,11 +228,10 @@ void insertion_sort(T *arr, long n)
     };
 };
 
-
 /*===========================================================================
 Merge Sort
-This function divide the unsorted array in halfs until it can no longer be 
-divided and recursively sort each array individually and merge back together 
+This function divide the unsorted array in halfs until it can no longer be
+divided and recursively sort each array individually and merge back together
 in sorted order.
 Parameters: the array to be sorted, length of array
 Return: the sorted array
@@ -278,10 +272,9 @@ T *merge_sort(T *arr, long n)
     return ordered_arr;
 };
 
-
 /*===========================================================================
 Quick Sort
-This function recursively selects the last item in the array as a pivot point 
+This function recursively selects the last item in the array as a pivot point
 and then rearrange the array around the pivot.
 Parameters: the array to be sorted, length of array
 Return: None
@@ -298,10 +291,9 @@ void quicksort(T *arr, long n)
     };
 };
 
-
 /*===========================================================================
 Randomized Quick Sort
-This function recursively selects a random item as a pivot point and then 
+This function recursively selects a random item as a pivot point and then
 rearrange the array around the pivot.
 Parameters: the array to be sorted, length of array
 Return: None
@@ -318,10 +310,9 @@ void randomized_quicksort(T *arr, long n)
     };
 };
 
-
 /*===========================================================================
 Improved Quick Sort
-This function recursively selects the median as a pivot point and then 
+This function recursively selects the median as a pivot point and then
 rearrange the array around the pivot.
 Parameters: the array to be sorted, length of array
 Return: None
