@@ -17,6 +17,7 @@ using namespace std::chrono;
 const int max_val = INT_MAX;
 const int min_val = INT_MIN;
 
+
 int *rand_arr(long length)
 {
     int *arr = new int[length];
@@ -114,31 +115,21 @@ long long ran_quick_sort_run_time(long n)
     return run_time;
 };
 
+long long cpp_sort_run_time(long n)
+{
+    // Sort array length n
+    int *arr = rand_arr(n);
+    auto start = high_resolution_clock::now();
+    sort(arr, arr + n);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    long long run_time = duration.count();
+
+    return run_time;
+};
+
 int main()
 {
-    // int A[8] = {2,8,7,1,3,5,6,4};
-    // int B[0] = {};
-    // string C[5] = {"a", "d", "b", "f", "."};
-    // int *E = merge_sort(A, 8);
-    // int *F = merge_sort(B, 0);
-    // string *G = merge_sort(C, 5);
-    // for (int i = 0; i < 8; i++)
-    // {
-    //     cout << E[i] << ' ';
-    // };
-    // cout << endl;
-    // for (int i = 0; i < 0; i++)
-    // {
-    //     cout << F[i] << ' ';
-    // };
-    // cout << F;
-    // cout << endl;
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     cout << G[i] << ' ';
-    // };
-    // return 0;
-
     // Array for testing array lengths
     int len[5] = {10, 100, 1000, 10000, 100000};
 
@@ -148,6 +139,7 @@ int main()
     int quick_runtime[5] = {};
     int improved_quick_runtime[5] = {};
     int randomized_quick_runtime[5] = {};
+    int cpp_runtime[5] = {};
 
     for (int i = 0; i < 5; i++)
     {
@@ -156,6 +148,7 @@ int main()
         quick_runtime[i] = quick_sort_run_time(len[i]);
         improved_quick_runtime[i] = improved_quick_sort_run_time(len[i]);
         randomized_quick_runtime[i] = ran_quick_sort_run_time(len[i]);
+        cpp_runtime[i] = cpp_sort_run_time(len[i]);
     }
 
     // Printing out insertion sort runtime
@@ -195,6 +188,14 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         cout << randomized_quick_runtime[i] << ' ';
+    };
+    cout << endl;
+
+    // Printing out C++ sort runtime
+    cout << "C++ sort runtime in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << cpp_runtime[i] << ' ';
     };
     cout << endl;
 
@@ -295,6 +296,26 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         cout << randomized_quick_10[i] << ' ';
+    };
+    cout << endl;
+
+    // Calculating C++ sort average sampling
+    int cpp_sort_10[5] = {};
+    for (int i = 0; i < 5; i++)
+    {
+        int current_time = 0;
+        for (int j = 0; j < 10; j++)
+        {
+            current_time += cpp_sort_run_time(len[i]);
+        }
+        current_time = current_time / 10;
+        cpp_sort_10[i] = current_time;
+    }
+
+    cout << "Average C++ sort runtime over sample of 10 in microseconds: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << cpp_sort_10[i] << ' ';
     };
     cout << endl;
 };
