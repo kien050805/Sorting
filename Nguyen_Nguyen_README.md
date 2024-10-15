@@ -33,14 +33,14 @@
 
 ![alt text](image.png)
 
-- Above is a graph showing the actual runtime of the sorting algorithms for randomly generated arrays with input sizes ranging from 10^1 to 10^6.
+* The graph shows the actual runtime of the sorting algorithms for randomly generated arrays with input sizes ranging from 10^1 to 10^6.
 
-- Insertion sort, with its O(n^2) complexity, takes more time than other algorithms for large test cases.
+    - Insertion sort, with its O(n^2) complexity, takes more time than other algorithms for large test cases.
 
-- The three functions—merge sort, quicksort, and improved quicksort—do not show a significant difference in execution time.
+    - The three functions—merge sort, quicksort, and improved quicksort—do not show a significant difference in execution time.
 
-- In the improved_quicksort() algorithm, we choose the median of arr[0], arr[mid], and arr[n-1] using a helper function pick_median() with O(1) complexity. As a result, for larger inputs, the algorithm runs slightly faster than regular quicksort.
+    - In the improved_quicksort() algorithm, we choose the median of arr[0], arr[mid], and arr[n-1] using a helper function pick_median() with O(1) complexity. As a result, for larger inputs, the algorithm runs slightly faster than regular quicksort.
 
-- The randomized function takes a significant amount of constant time, so it does not offer any particular advantage over regular quicksort when applied to randomly generated arrays.
+    - The randomized function takes a significant amount of constant time, so it does not offer any particular advantage over regular quicksort when applied to randomly generated arrays.
 
-- The C++ sort algorithm also appears to have an upper bound of O(nlogn), but with a significantly smaller constant compared to the O(nlogn) algorithms we wrote.
+    - The C++ sort algorithm also appears to have an upper bound of O(nlogn), but with a significantly smaller constant compared to the O(nlogn) algorithms we wrote.
