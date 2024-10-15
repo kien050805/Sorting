@@ -11,6 +11,7 @@ This file runs various tests on every sorting functions in sorting.hpp
 #include <chrono>
 #include <climits>
 #include <cassert>
+#include <algorithm>
 
 using namespace std;
 using namespace std::chrono;
